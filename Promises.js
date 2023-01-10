@@ -31,3 +31,20 @@ fakeRequestPromise("findagirlfriend.com/api/nearme/page1")
   .catch(() => {
     console.log("Sorry, your page didn't load");
   });
+
+//Promise backgroundColor
+const colorBackChange = (color, delay) => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      document.body.style.backgroundColor = color;
+      resolve();
+    }, delay);
+  });
+};
+
+colorBackChange("black", 1000)
+  .then(() => colorBackChange("orange", 1000))
+  .then(() => colorBackChange("darkred", 1000))
+  .then(() => colorBackChange("green", 1000))
+  .then(() => colorBackChange("blue", 1000))
+  .then(() => colorBackChange("indigo", 1000));
