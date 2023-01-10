@@ -42,9 +42,49 @@ const colorBackChange = (color, delay) => {
   });
 };
 
-colorBackChange("black", 1000)
-  .then(() => colorBackChange("orange", 1000))
-  .then(() => colorBackChange("darkred", 1000))
-  .then(() => colorBackChange("green", 1000))
-  .then(() => colorBackChange("blue", 1000))
-  .then(() => colorBackChange("indigo", 1000));
+// colorBackChange("black", 1000)
+//   .then(() => colorBackChange("orange", 1000))
+//   .then(() => colorBackChange("darkred", 1000))
+//   .then(() => colorBackChange("green", 1000))
+//   .then(() => colorBackChange("blue", 1000))
+//   .then(() => colorBackChange("indigo", 1000));
+
+//Async -- async returns a 'promise', without we writing the promise;
+const login = async (username, password) => {
+  if (!username || !password) throw "Missing Credentials";
+  if (password === "iamapassword") return `Welcome, ${username}`;
+  throw "Invalid Password";
+};
+
+login("Bruno", "iamapassword")
+  .then((msg) => {
+    console.log(msg);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+//Await -- it waits for the line to run, before running the rest;
+async function partyLights() {
+  await colorBackChange("black", 1000);
+  await colorBackChange("orange", 1000);
+  await colorBackChange("darkred", 1000);
+  await colorBackChange("green", 1000);
+  await colorBackChange("blue", 1000);
+  await colorBackChange("indigo", 1000);
+}
+
+partyLights();
+
+//Errors in async functions
+async function twoPages() {
+  try {
+    let data1 = await fakeRequestPromise("/FollowMe");
+    console.log(data1);
+    let data2 = await fakeRequestPromise("/HaveAGoodDay");
+    console.log(data2);
+  } catch (er) {
+    console.log(er);
+    console.log("Wasn't this time, sorry");
+  }
+}
